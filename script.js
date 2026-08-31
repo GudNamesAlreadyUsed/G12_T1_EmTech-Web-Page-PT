@@ -7,6 +7,7 @@
  * - Magnetic Physics Cursor Attraction on Buttons & Chips
  * - Synthesized Harmonic Web Audio Engine with Animated Audio Equalizer
  * - 4-7-8 Interactive Acute Grounding / Breathing Tool (Tab 3 & G key)
+ * - Evidence Artifact Lightbox Inspection Modal (Tab 6)
  * - Interactive 3D Card Tilt with Light Reflection Glare & Border Beam
  * - Circular SVG Scroll Progress Ring & Deep Linking
  * - Safe TreeWalker Search Engine with Dynamic Filter Synchronization
@@ -35,6 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const shortcutsDialog = document.getElementById('shortcutsDialog');
   const shortcutsToggleBtn = document.getElementById('shortcutsToggleBtn');
   const shortcutsCloseBtn = document.getElementById('shortcutsCloseBtn');
+  
   const groundingDialog = document.getElementById('groundingDialog');
   const groundingCloseBtn = document.getElementById('groundingCloseBtn');
   const inlineGroundingTrigger = document.getElementById('inlineGroundingTrigger');
@@ -43,6 +45,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const breathingRing = document.getElementById('breathingRing');
   const breathingActionLabel = document.getElementById('breathingActionLabel');
   const breathingTimerCount = document.getElementById('breathingTimerCount');
+
+  // Tab 06 Evidence Lightbox Modal
+  const evidenceLightbox = document.getElementById('evidenceLightbox');
+  const lightboxCloseBtn = document.getElementById('lightboxCloseBtn');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxTitle = document.getElementById('lightboxTitle');
+  const lightboxCaption = document.getElementById('lightboxCaption');
+  const evidenceCards = document.querySelectorAll('.evidence-card');
 
   // Tab 02: Case Search Elements & Quick Chips
   const caseSearchInput = document.getElementById('caseSearchInput');
@@ -260,7 +270,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // =========================================================================
-  // 4. Tab Navigation & Glider Mechanics
+  // 4. Tab Navigation & Glider Mechanics (Tabs 01 - 06)
   // =========================================================================
   const ringCircumference = 113.097;
 
@@ -269,7 +279,8 @@ document.addEventListener('DOMContentLoaded', () => {
     'tab-incidents',
     'tab-mental-health',
     'tab-laws',
-    'tab-hotlines'
+    'tab-hotlines',
+    'tab-about'
   ];
 
   const hashToTabMap = {
@@ -281,7 +292,12 @@ document.addEventListener('DOMContentLoaded', () => {
     'laws': 'tab-laws',
     'rights': 'tab-laws',
     'hotlines': 'tab-hotlines',
-    'help': 'tab-hotlines'
+    'help': 'tab-hotlines',
+    'about': 'tab-about',
+    'hub': 'tab-about',
+    'team': 'tab-about',
+    'collaboration': 'tab-about',
+    'workspace': 'tab-about'
   };
 
   const tabToHashMap = {
@@ -289,7 +305,8 @@ document.addEventListener('DOMContentLoaded', () => {
     'tab-incidents': 'incidents',
     'tab-mental-health': 'mental-health',
     'tab-laws': 'laws',
-    'tab-hotlines': 'hotlines'
+    'tab-hotlines': 'hotlines',
+    'tab-about': 'about'
   };
 
   function updateGlider(activeTabBtn, animate = true) {
@@ -348,7 +365,7 @@ document.addEventListener('DOMContentLoaded', () => {
             { opacity: 1, y: 0, duration: 0.35, ease: 'power2.out', clearProps: 'all' }
           );
 
-          const revealItems = panel.querySelectorAll('.factor-narrative-strip, .statute-row-strip, .step-horizontal-item, .contact-ledger-row, .asymmetric-split-hero');
+          const revealItems = panel.querySelectorAll('.factor-narrative-strip, .statute-row-strip, .step-horizontal-item, .contact-ledger-row, .asymmetric-split-hero, .team-profile-card, .phase-card, .curation-table-wrapper, .evidence-card');
           if (revealItems.length > 0) {
             gsap.fromTo(revealItems,
               { opacity: 0, y: 10 },
@@ -815,7 +832,41 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // =========================================================================
-  // 10. Scroll Progress & Floating Controls
+  // 10. Tab 06 Evidence Gallery Lightbox Modal
+  // =========================================================================
+  function openEvidenceLightbox(imgSrc, title, caption) {
+    if (!evidenceLightbox || typeof evidenceLightbox.showModal !== 'function') return;
+    if (lightboxImg) lightboxImg.src = imgSrc;
+    if (lightboxTitle) lightboxTitle.textContent = title;
+    if (lightboxCaption) lightboxCaption.textContent = caption;
+    evidenceLightbox.showModal();
+    playUiSound('expand');
+  }
+
+  function closeEvidenceLightbox() {
+    if (evidenceLightbox && typeof evidenceLightbox.close === 'function') {
+      evidenceLightbox.close();
+    }
+  }
+
+  evidenceCards.forEach(card => {
+    card.addEventListener('click', () => {
+      const imgSrc = card.getAttribute('data-evidence-img');
+      const title = card.getAttribute('data-evidence-title');
+      const caption = card.getAttribute('data-evidence-caption');
+      openEvidenceLightbox(imgSrc, title, caption);
+    });
+  });
+
+  if (lightboxCloseBtn) lightboxCloseBtn.addEventListener('click', closeEvidenceLightbox);
+  if (evidenceLightbox) {
+    evidenceLightbox.addEventListener('click', (e) => {
+      if (e.target === evidenceLightbox) closeEvidenceLightbox();
+    });
+  }
+
+  // =========================================================================
+  // 11. Scroll Progress & Floating Controls
   // =========================================================================
   window.addEventListener('scroll', () => {
     const scrollTop = window.scrollY;
@@ -853,7 +904,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // =========================================================================
-  // 11. Shortcuts Modal & Global Hotkeys
+  // 12. Shortcuts Modal, Evidence Lightbox & Global Hotkeys (Tabs 1 - 6)
   // =========================================================================
   function openShortcutsDialog() {
     if (shortcutsDialog && typeof shortcutsDialog.showModal === 'function') shortcutsDialog.showModal();
@@ -871,14 +922,48 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Tab 06 Evidence Lightbox Handlers
+  function openEvidenceLightbox(imgSrc, title, caption) {
+    if (!evidenceLightbox) return;
+    if (lightboxImg) lightboxImg.src = imgSrc || '';
+    if (lightboxTitle) lightboxTitle.textContent = title || 'Evidence Artifact Preview';
+    if (lightboxCaption) lightboxCaption.textContent = caption || '';
+    if (typeof evidenceLightbox.showModal === 'function') {
+      evidenceLightbox.showModal();
+      playUiSound('tab');
+    }
+  }
+
+  function closeEvidenceLightbox() {
+    if (evidenceLightbox && typeof evidenceLightbox.close === 'function') {
+      evidenceLightbox.close();
+    }
+  }
+
+  if (lightboxCloseBtn) lightboxCloseBtn.addEventListener('click', closeEvidenceLightbox);
+  if (evidenceLightbox) {
+    evidenceLightbox.addEventListener('click', (e) => {
+      if (e.target === evidenceLightbox) closeEvidenceLightbox();
+    });
+  }
+
+  evidenceCards.forEach(card => {
+    card.addEventListener('click', () => {
+      const imgSrc = card.getAttribute('data-evidence-img');
+      const title = card.getAttribute('data-evidence-title');
+      const caption = card.getAttribute('data-evidence-caption');
+      openEvidenceLightbox(imgSrc, title, caption);
+    });
+  });
+
   document.addEventListener('keydown', (e) => {
     if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) {
       if (e.key === 'Escape') document.activeElement.blur();
       return;
     }
 
-    // Direct tab jumps 1-5
-    if (['1', '2', '3', '4', '5'].includes(e.key)) {
+    // Direct tab jumps 1-6
+    if (['1', '2', '3', '4', '5', '6'].includes(e.key)) {
       const idx = parseInt(e.key, 10) - 1;
       if (idx >= 0 && idx < tabIdList.length) {
         e.preventDefault();
@@ -938,11 +1023,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'Escape') {
       closeShortcutsDialog();
       closeGroundingDialog();
+      closeEvidenceLightbox();
     }
   });
 
   // =========================================================================
-  // 12. Initial Deep Link / Hash Routing
+  // 13. Initial Deep Link / Hash Routing
   // =========================================================================
   const currentHash = window.location.hash.replace('#', '').toLowerCase();
   if (currentHash && hashToTabMap[currentHash]) {

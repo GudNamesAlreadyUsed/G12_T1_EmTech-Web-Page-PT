@@ -29,6 +29,9 @@
   --accent-crimson: #fb7185;
   --accent-crimson-deep: #e11d48;
   --accent-crimson-glow: rgba(251, 113, 133, 0.2);
+  --accent-amber: #fbbf24;
+  --accent-blue: #38bdf8;
+  --accent-purple: #c084fc;
 
   /* Typography Families */
   --font-display: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -216,6 +219,11 @@ body.editorial-dark {
 :focus-visible {
   outline: 2px solid var(--accent-teal);
   outline-offset: 4px;
+}
+
+.editorial-viewport:focus,
+.editorial-viewport:focus-visible {
+  outline: none;
 }
 
 /* Typography Helpers */
@@ -677,30 +685,8 @@ body.editorial-dark {
   opacity: 1;
 }
 
-/* Animated Border Beam */
-.card-border-beam {
-  position: absolute;
-  inset: -1px;
-  border-radius: inherit;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  background: conic-gradient(from 0deg, transparent 65%, var(--accent-teal) 85%, var(--accent-crimson) 100%);
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask-composite: exclude;
-  -webkit-mask-composite: xor;
-  padding: 1.5px;
-  animation: rotateBeam 4s linear infinite;
-  z-index: 3;
-}
-
-.interactive-tilt-card:hover .card-border-beam {
-  opacity: 1;
-}
-
-@keyframes rotateBeam {
-  100% { transform: rotate(360deg); }
+.interactive-tilt-card {
+  outline: none;
 }
 
 @keyframes ambientKenBurns {
@@ -1290,13 +1276,13 @@ body.editorial-dark {
 }
 
 /* ==========================================================================
-   Tab 03: The Mental Health Link (Factor Narrative Strips & Connected Rail)
+   Tab 03 & Tab 06: Factor & Phase Narrative Strips & Connected Rail
    ========================================================================== */
-.factor-stream {
+.factor-stream, .phases-timeline-stream {
   position: relative;
 }
 
-.factor-stream::before {
+.factor-stream::before, .phases-timeline-stream::before {
   content: '';
   position: absolute;
   left: 28px;
@@ -1309,7 +1295,7 @@ body.editorial-dark {
 }
 
 @media (max-width: 679px) {
-  .factor-stream::before {
+  .factor-stream::before, .phases-timeline-stream::before {
     display: none;
   }
 }
@@ -1721,6 +1707,385 @@ body.editorial-dark {
 }
 
 /* ==========================================================================
+   Tab 06: About & Collaboration Hub (Authentic Student Editorial Architecture)
+   ========================================================================== */
+.hub-flow-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.hub-section-block {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.hub-section-header {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--rule-hairline);
+  padding-bottom: 0.65rem;
+}
+
+.hub-section-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 2.2vw, 1.65rem);
+  font-weight: 800;
+  color: var(--text-pure);
+  letter-spacing: -0.02em;
+}
+
+.hub-block-desc {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-body);
+}
+
+/* Left Pinned Hub Links Box */
+.hub-links-box {
+  margin-top: 1.5rem;
+  padding: 1.15rem;
+  background: var(--ink-surface);
+  border: 1px solid var(--rule-hairline);
+  border-radius: 4px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.hub-box-tag {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--text-dim);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.hub-box-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.hub-workspace-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.65rem 0.85rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--rule-hairline);
+  color: var(--text-lead);
+  font-size: 0.86rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 3px;
+  transition: all 0.2s var(--ease-spring);
+}
+
+.hub-workspace-link:hover {
+  background: rgba(45, 212, 191, 0.08);
+  border-color: var(--accent-teal);
+  color: #ffffff;
+  transform: translateX(3px);
+}
+
+.workspace-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+}
+
+.trello-dot { background: var(--accent-blue); }
+.drive-dot { background: var(--accent-amber); }
+.github-dot { background: var(--accent-purple); }
+
+.workspace-txt {
+  flex: 1;
+}
+
+.workspace-arrow {
+  color: var(--text-dim);
+  font-size: 0.95rem;
+}
+
+/* Part 1: Team Cards Grid */
+.team-cards-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+@media (min-width: 680px) {
+  .team-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+.member-card {
+  background: var(--ink-surface);
+  border: 1px solid var(--rule-hairline);
+  border-radius: 6px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s var(--ease-spring), border-color 0.25s ease, box-shadow 0.25s ease;
+  position: relative;
+}
+
+.member-card:hover {
+  border-color: var(--accent-teal);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.6), 0 0 16px rgba(45, 212, 191, 0.15);
+}
+
+.member-photo-frame {
+  width: 100%;
+  height: 200px;
+  background: #080d1a;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--rule-hairline);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.member-photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s var(--ease-spring);
+}
+
+.member-card:hover .member-photo-img {
+  transform: scale(1.03);
+}
+
+.member-info-box {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  flex: 1;
+}
+
+.member-header-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.member-name {
+  font-family: var(--font-display);
+  font-size: 1.12rem;
+  font-weight: 800;
+  color: var(--text-pure);
+  letter-spacing: -0.015em;
+}
+
+.member-role-pill {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  background: rgba(45, 212, 191, 0.08);
+  border: 1px solid rgba(45, 212, 191, 0.3);
+  color: var(--accent-teal);
+  border-radius: 3px;
+  white-space: nowrap;
+}
+
+.member-bio {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--text-body);
+}
+
+/* Part 3: Curation Data Table */
+.curation-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--rule-hairline);
+  border-radius: 4px;
+  background: var(--ink-surface);
+  -webkit-overflow-scrolling: touch;
+}
+
+.curation-data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+  text-align: left;
+  min-width: 640px;
+}
+
+.curation-data-table th {
+  background: var(--ink-elevated);
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--text-pure);
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid var(--rule-hairline-bright);
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+.curation-data-table td {
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid var(--rule-hairline);
+  color: var(--text-body);
+  line-height: 1.55;
+  vertical-align: top;
+}
+
+.curation-data-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* Part 4: Evidence Gallery */
+.evidence-cards-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .evidence-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.evidence-card {
+  background: var(--ink-surface);
+  border: 1px solid var(--rule-hairline);
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: transform 0.25s var(--ease-spring), border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.evidence-card:hover {
+  border-color: var(--accent-teal);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6), 0 0 15px rgba(45, 212, 191, 0.15);
+}
+
+.evidence-thumb-wrapper {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+  background: #080c16;
+}
+
+.evidence-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s var(--ease-spring);
+}
+
+.evidence-card:hover .evidence-img {
+  transform: scale(1.03);
+}
+
+.evidence-zoom-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(5, 8, 15, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.evidence-card:hover .evidence-zoom-overlay {
+  opacity: 1;
+}
+
+.zoom-badge {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: #ffffff;
+  background: rgba(45, 212, 191, 0.2);
+  border: 1px solid var(--accent-teal);
+  padding: 4px 10px;
+  border-radius: 3px;
+  box-shadow: 0 0 10px rgba(45, 212, 191, 0.4);
+}
+
+.evidence-caption-box {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.evidence-label {
+  font-family: var(--font-display);
+  font-size: 0.98rem;
+  font-weight: 800;
+  color: var(--text-pure);
+}
+
+.evidence-desc {
+  font-size: 0.84rem;
+  line-height: 1.5;
+  color: var(--text-dim);
+}
+
+/* Lightbox Modal */
+.lightbox-dialog {
+  max-width: 820px;
+}
+
+.lightbox-card {
+  padding: 1.25rem;
+}
+
+.lightbox-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.lightbox-img-stage {
+  width: 100%;
+  max-height: 480px;
+  overflow: hidden;
+  border-radius: 4px;
+  border: 1px solid var(--rule-hairline);
+  background: #080c16;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox-full-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.lightbox-caption-txt {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--text-lead);
+}
+
+/* ==========================================================================
    Mobile Emergency Dock with Shimmer Pulse
    ========================================================================== */
 .mobile-emergency-dock {
@@ -2023,7 +2388,7 @@ body.editorial-dark {
 
 /* ==========================================================================
    Copy Toast Banner with Spring Bounce
-   ========================================================================== */
+   ========================================================================= */
 .copy-toast-banner {
   position: fixed;
   bottom: 2rem;
@@ -2206,7 +2571,9 @@ body.editorial-dark {
   .statute-title,
   .factor-title,
   .step-headline,
-  .contact-name {
+  .contact-name,
+  .hub-section-title,
+  .member-name {
     color: #000000 !important;
   }
 
@@ -2216,7 +2583,8 @@ body.editorial-dark {
   .statute-body,
   .step-prose,
   .flowing-para,
-  .display-lead {
+  .display-lead,
+  .member-bio {
     color: #333333 !important;
   }
 
