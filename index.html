@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bantay-Isip: Stopping School Violence at the Root</title>
+  <meta name="description"
+    content="Bantay-Isip: Stopping School Violence at the Root — A typography-first investigative digital campaign exploring the student mental health crisis, campus violence, and legal protections.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="editorial-dark">
+
+  <!-- Accessible Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Top Scroll Progress Indicator with Glowing Head -->
+  <div id="scrollProgressBar" class="scroll-progress-bar" aria-hidden="true">
+    <div class="progress-glow-head"></div>
+  </div>
+
+  <!-- Ambient Cursor Glow Spotlight -->
+  <div id="cursorSpotlight" class="cursor-spotlight" aria-hidden="true"></div>
+
+  <!-- Ambient Subtle Grid Background -->
+  <div class="ambient-grid-canvas" aria-hidden="true"></div>
+
+  <!-- Top Dispatch Strip -->
+  <aside class="top-dispatch" aria-label="Crisis hotline information">
+    <div class="container dispatch-inner">
+      <div class="dispatch-left">
+        <span class="dispatch-label">National Crisis Hotline:</span>
+        <a href="tel:1553" class="dispatch-action-dial" data-copy="1553" title="Click to copy or dial 1553">
+          <span class="pulse-beacon" aria-hidden="true"></span>
+          <span class="dial-number-txt">1553</span>
+        </a>
+      </div>
+      <div class="dispatch-right">
+        <span class="dispatch-label">Las Piñas CSWD:</span>
+        <a href="tel:0288724663" class="dispatch-link" data-copy="(02) 8872-4663"
+          title="Click to copy or dial (02) 8872-4663">(02) 8872-4663</a>
+
+        <!-- Sound FX Toggle -->
+        <button type="button" id="soundToggleBtn" class="sound-toggle-btn" title="Toggle Interface Audio Feedback"
+          aria-label="Toggle UI Audio">
+          <span id="soundIcon" aria-hidden="true">🔊</span>
+        </button>
+
+        <!-- Shortcuts Hint Trigger -->
+        <button type="button" id="shortcutsToggleBtn" class="shortcuts-hint-btn" title="Keyboard Shortcuts (Shift + ?)"
+          aria-label="Open Keyboard Shortcuts">
+          <kbd>?</kbd>
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Site Header with Track Navigation -->
+  <header class="site-header" id="siteHeader">
+    <div class="container header-grid">
+      <div class="brand-zone">
+        <h1 class="brand-heading">Bantay-Isip: Stopping School Violence at the Root</h1>
+      </div>
+
+      <!-- Segmented Track Navigation with Sliding Glider Indicator & Mouse Drag-Scroll -->
+      <nav class="nav-segment-track" id="navSegmentTrack" aria-label="Site Navigation">
+        <div class="track-list" role="tablist" aria-label="Campaign Sections">
+          <div class="nav-glider-pill" id="navGlider" aria-hidden="true"></div>
+
+          <button type="button" role="tab" class="track-item active" id="tab-btn-home" aria-selected="true"
+            aria-controls="tab-home" tabindex="0" title="Press '1' on keyboard to jump here">
+            <span class="track-index">01</span>
+            <span class="track-name">Home</span>
+            <kbd class="nav-kbd" id="kbd-1">1</kbd>
+          </button>
+          <button type="button" role="tab" class="track-item" id="tab-btn-incidents" aria-selected="false"
+            aria-controls="tab-incidents" tabindex="-1" title="Press '2' on keyboard to jump here">
+            <span class="track-index">02</span>
+            <span class="track-name">Recent Incidents</span>
+            <kbd class="nav-kbd" id="kbd-2">2</kbd>
+          </button>
+          <button type="button" role="tab" class="track-item" id="tab-btn-mental-health" aria-selected="false"
+            aria-controls="tab-mental-health" tabindex="-1" title="Press '3' on keyboard to jump here">
+            <span class="track-index">03</span>
+            <span class="track-name">The Mental Health Link</span>
+            <kbd class="nav-kbd" id="kbd-3">3</kbd>
+          </button>
+          <button type="button" role="tab" class="track-item" id="tab-btn-laws" aria-selected="false"
+            aria-controls="tab-laws" tabindex="-1" title="Press '4' on keyboard to jump here">
+            <span class="track-index">04</span>
+            <span class="track-name">Student Rights &amp; Laws</span>
+            <kbd class="nav-kbd" id="kbd-4">4</kbd>
+          </button>
+          <button type="button" role="tab" class="track-item" id="tab-btn-hotlines" aria-selected="false"
+            aria-controls="tab-hotlines" tabindex="-1" title="Press '5' on keyboard to jump here">
+            <span class="track-index">05</span>
+            <span class="track-name">Las Piñas &amp; National Hotlines</span>
+            <kbd class="nav-kbd" id="kbd-5">5</kbd>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Primary Content Stage -->
+  <main id="main-content" class="content-stage container">
+
+    <!-- ==============================================
+         TAB 01: HOME
+         ============================================== -->
+    <section id="tab-home" class="editorial-viewport active" role="tabpanel" aria-labelledby="tab-btn-home"
+      tabindex="0">
+
+      <!-- Hero Campaign Image Banner -->
+      <div class="hero-media-wrapper interactive-tilt-card">
+        <img src="images/home-school-banner.jpg" alt="Las Piñas Campus Building Overview"
+          class="editorial-media-img hero-banner-media" loading="eager">
+        <div class="media-sheen-overlay"></div>
+      </div>
+
+      <div class="asymmetric-split-hero">
+        <div class="hero-left-col">
+          <div class="headline-mask">
+            <h2 class="display-title">Overview</h2>
+          </div>
+
+          <p class="display-lead">
+            When fights, stabbings, or shootings happen on school grounds, the first response is always to call the
+            police, search backpacks, and put more guards at the gate. But guards only catch a weapon after someone has
+            already decided to hurt a classmate. Real safety starts with understanding what breaks inside a student long
+            before they snap.
+          </p>
+
+          <div class="editorial-actions">
+            <button type="button" class="btn-editorial btn-dark-sheen" id="action-btn-cases"
+              data-target-tab="tab-incidents">
+              <span class="btn-label">Read the Recent Cases</span>
+              <span class="btn-vector" aria-hidden="true">&rarr;</span>
+            </button>
+            <button type="button" class="btn-editorial btn-crisis-sheen" id="action-btn-help"
+              data-target-tab="tab-hotlines">
+              <span class="btn-label">Get Help Now</span>
+              <span class="btn-vector" aria-hidden="true">&nearr;</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="hero-right-col">
+          <div class="manifesto-editorial-wrap">
+            <h3 class="manifesto-headline">Campaign Mission</h3>
+
+            <div class="manifesto-flowing-copy">
+              <p class="flowing-para">
+                Classroom violence is rarely a random act. It is almost always the boiling point of untreated
+                depression, violent bullying, domestic trauma, and an overwhelming shortage of guidance counselors who
+                could have stepped in months earlier.
+              </p>
+              <p class="flowing-para">
+                This campaign breaks down the connection between student mental health struggles and recent campus
+                violence across the country, highlighting what happened right here in Las Piñas and providing direct
+                steps and hotlines to help students before another tragedy occurs.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ==============================================
+         TAB 02: RECENT INCIDENTS ACROSS THE COUNTRY
+         ============================================== -->
+    <section id="tab-incidents" class="editorial-viewport" role="tabpanel" aria-labelledby="tab-btn-incidents"
+      tabindex="0" hidden>
+
+      <div class="sticky-split-layout">
+
+        <!-- Left Pinned Column -->
+        <aside class="sticky-side-anchor">
+          <div class="anchor-pin">
+            <h2 class="display-title-sticky">Real Campus Cases</h2>
+            <p class="sticky-subtext">
+              The following cases are curated from various Philippine news outlets and police blotter reports, paired
+              with student analysis on the unaddressed psychological factors behind each event.
+            </p>
+
+            <!-- Case Search & Controls -->
+            <div class="case-controls-bar">
+              <div class="search-input-wrap">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <circle cx="11" cy="11" r="8" />
+                  <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                </svg>
+                <input type="text" id="caseSearchInput" class="minimal-search-input"
+                  placeholder="Filter cases (e.g. Cavite, stabbing, Tacloban)..." aria-label="Filter cases">
+                <button type="button" id="caseSearchClear" class="search-clear-btn" aria-label="Clear case search"
+                  hidden>&times;</button>
+              </div>
+
+              <!-- Quick Filter Chips for Cases -->
+              <div class="quick-filter-chips" aria-label="Quick filter cases">
+                <button type="button" class="filter-chip active" data-filter="">All</button>
+                <button type="button" class="filter-chip" data-filter="Las Piñas">Las Piñas</button>
+                <button type="button" class="filter-chip" data-filter="Cavite">Cavite</button>
+                <button type="button" class="filter-chip" data-filter="Tacloban">Tacloban</button>
+                <button type="button" class="filter-chip" data-filter="Bacolod">Bacolod</button>
+                <button type="button" class="filter-chip" data-filter="Zamboanga">Zamboanga</button>
+              </div>
+
+              <div class="controls-action-row">
+                <button type="button" id="toggleAllCasesBtn" class="control-text-btn">Expand All Cases</button>
+                <span id="caseCountBadge" class="filter-count-badge">5 cases</span>
+              </div>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Right Flowing Feed -->
+        <div class="flowing-narrative-feed" id="casesFeed">
+
+          <!-- FEATURED LOCAL CASE: Las Piñas -->
+          <article class="featured-case-block searchable-case-unit interactive-tilt-card"
+            data-case-keywords="las pinas national high school stabbing local case recess july 31 2026 stairs fourth floor 13-year-old 14-year-old anger knife fatal">
+
+            <div class="case-feature-media-wrapper">
+              <img src="images/las-pinas-investigation.jpg" alt="Las Piñas National High School Incident Investigation"
+                class="editorial-media-img case-media-banner" loading="lazy">
+              <div class="media-sheen-overlay"></div>
+            </div>
+
+            <h3 class="case-headline">Las Piñas National High School Stabbing (July 31, 2026) — Local Case</h3>
+
+            <div class="case-editorial-columns">
+              <div class="case-col">
+                <span class="col-marker">Incident:</span>
+                <p class="case-body">
+                  A 13-year-old male student died from a chest wound after being stabbed by a 14-year-old schoolmate on
+                  the fourth-floor stairs right outside their classroom during recess.
+                </p>
+              </div>
+              <div class="case-col takeaway-col">
+                <span class="col-marker text-accent">Why It Matters:</span>
+                <p class="case-body highlight-text">
+                  This happened in our own city during a regular school break. Minor campus disagreements turn deadly
+                  within seconds when teenagers harbor deep anger and have no guidance counselor to turn to when
+                  tensions rise.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <!-- ACCORDION STREAM: Regional Cases -->
+          <div class="cases-accordion-stream">
+
+            <!-- Case 1: Cavite -->
+            <article class="accordion-item searchable-case-unit" data-expanded="true"
+              data-case-keywords="general trias cavite knife elementary pupils grade 5 grade 8 private school june 16 2026 psychiatric evaluation social workers psychological distress">
+              <button type="button" class="accordion-trigger" aria-expanded="true">
+                <div class="trigger-left">
+                  <h3 class="accordion-title">General Trias, Cavite (June 16, 2026)</h3>
+                </div>
+                <span class="accordion-icon" aria-hidden="true">+</span>
+              </button>
+
+              <div class="accordion-panel">
+                <div class="panel-inner">
+                  <div class="panel-point">
+                    <span class="point-tag">Incident:</span>
+                    <p class="point-prose">A 14-year-old Grade 8 student brought a kitchen knife into a Grade 5
+                      classroom in a private school and wounded seven elementary pupils while teachers were in a
+                      meeting. The minor was taken into custody and referred to social workers for psychiatric
+                      evaluation.</p>
+                  </div>
+                  <div class="panel-point takeaway-point">
+                    <span class="point-tag text-accent">Why It Matters:</span>
+                    <p class="point-prose">A 14-year-old does not attack younger children without severe, long-term
+                      psychological distress. When sudden mood shifts and behavioral red flags are ignored at home and
+                      in class, a child eventually hits a violent breaking point.</p>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Case 2: Tacloban -->
+            <article class="accordion-item searchable-case-unit" data-expanded="false"
+              data-case-keywords="tacloban city high school shooting public high school weapon access firearm guns june 22 2026 three students died grudges crime scene">
+              <button type="button" class="accordion-trigger" aria-expanded="false">
+                <div class="trigger-left">
+                  <h3 class="accordion-title">Tacloban City High School Shooting (June 22, 2026)</h3>
+                </div>
+                <span class="accordion-icon" aria-hidden="true">+</span>
+              </button>
+
+              <div class="accordion-panel">
+                <div class="panel-inner">
+                  <div class="panel-point">
+                    <span class="point-tag">Incident:</span>
+                    <p class="point-prose">Three students died after a shooting broke out inside a public high school in
+                      Tacloban City, sparking national outcry over campus security and weapon access among teenagers.
+                    </p>
+                  </div>
+                  <div class="panel-point takeaway-point">
+                    <span class="point-tag text-accent">Why It Matters:</span>
+                    <p class="point-prose">Schools should never turn into crime scenes. When intense personal grudges
+                      and hostile behavior are left unmediated by school staff, small conflicts escalate into fatal
+                      violence.</p>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Case 3: Bacolod -->
+            <article class="accordion-item searchable-case-unit" data-expanded="false"
+              data-case-keywords="bacolod city student stabbing bladed weapon campus gates late june 2026 argument 12-year-old 14-year-old grade 7 grade 8 emotional regulation de-escalation">
+              <button type="button" class="accordion-trigger" aria-expanded="false">
+                <div class="trigger-left">
+                  <h3 class="accordion-title">Bacolod City Student Stabbing (Late June 2026)</h3>
+                </div>
+                <span class="accordion-icon" aria-hidden="true">+</span>
+              </button>
+
+              <div class="accordion-panel">
+                <div class="panel-inner">
+                  <div class="panel-point">
+                    <span class="point-tag">Incident:</span>
+                    <p class="point-prose">A 12-year-old Grade 7 learner surrendered to local police after pulling out a
+                      bladed weapon and stabbing a 14-year-old Grade 8 student outside their campus gates following an
+                      argument.</p>
+                  </div>
+                  <div class="panel-point takeaway-point">
+                    <span class="point-tag text-accent">Why It Matters:</span>
+                    <p class="point-prose">A twelve-year-old carrying a knife to resolve an argument proves that our
+                      schools are failing to teach basic emotional regulation and conflict de-escalation.</p>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Case 4: Zamboanga -->
+            <article class="accordion-item searchable-case-unit" data-expanded="false"
+              data-case-keywords="ateneo de zamboanga university junior high shooting august 18 2026 private institution mental breakdowns isolation depression private schools check-ins">
+              <button type="button" class="accordion-trigger" aria-expanded="false">
+                <div class="trigger-left">
+                  <h3 class="accordion-title">Ateneo de Zamboanga University Junior High Shooting (August 18, 2026)</h3>
+                </div>
+                <span class="accordion-icon" aria-hidden="true">+</span>
+              </button>
+
+              <div class="accordion-panel">
+                <div class="panel-inner">
+                  <div class="panel-point">
+                    <span class="point-tag">Incident:</span>
+                    <p class="point-prose">Two students died inside the Junior High School building following a shooting
+                      incident on campus grounds.</p>
+                  </div>
+                  <div class="panel-point takeaway-point">
+                    <span class="point-tag text-accent">Why It Matters:</span>
+                    <p class="point-prose">Campus violence is not limited to underfunded public schools. Extreme
+                      isolation, depression, and mental breakdowns happen in top private institutions too, proving that
+                      mental health check-ins must be standard for all schools across the country.</p>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ==============================================
+         TAB 03: THE MENTAL HEALTH LINK
+         ============================================== -->
+    <section id="tab-mental-health" class="editorial-viewport" role="tabpanel" aria-labelledby="tab-btn-mental-health"
+      tabindex="0" hidden>
+
+      <div class="sticky-split-layout">
+
+        <aside class="sticky-side-anchor">
+          <div class="anchor-pin">
+            <h2 class="display-title-sticky">Underlying Factors</h2>
+            <p class="sticky-subtext">
+              Examining the root psychological drivers, research findings, and institutional deficits connecting mental
+              health challenges with student violence.
+            </p>
+          </div>
+        </aside>
+
+        <div class="flowing-narrative-feed factor-stream">
+
+          <article class="factor-narrative-strip" data-factor="1">
+            <div class="factor-index-stamp">01</div>
+            <div class="factor-story-wrap">
+              <h3 class="factor-title">Why Aggression Replaces Communication</h3>
+              <p class="factor-body">
+                Teenagers dealing with chronic family trauma, anxiety, or depression rarely have the words or skills to
+                process emotional pain alone. When there are no safe outlets to talk, bottled-up frustration often turns
+                outward into defiance, verbal attacks, and physical violence against peers.
+              </p>
+            </div>
+          </article>
+
+          <article class="factor-narrative-strip" data-factor="2">
+            <div class="factor-index-stamp">02</div>
+            <div class="factor-story-wrap">
+              <h3 class="factor-title">The Reality of Bullying in Philippine Schools</h3>
+              <p class="factor-body">
+                Reports from EDCOM II and international PISA assessments show that 1 in 3 Filipino students experiences
+                regular bullying. Today, bullying does not stop at the school gate; it follows students home through
+                anonymous messages, smear posts, and group chats 24/7. When victims feel trapped and see no intervention
+                from school authorities, some turn to retaliatory violence as their only way out.
+              </p>
+            </div>
+          </article>
+
+          <article class="factor-narrative-strip" data-factor="3">
+            <div class="factor-index-stamp">03</div>
+            <div class="factor-story-wrap">
+              <h3 class="factor-title">The Guidance Counselor Shortage</h3>
+              <p class="factor-body">
+                Across the Philippines, there is a massive deficit of licensed guidance counselors, with over 40,000
+                public schools lacking dedicated mental health professionals. In most campuses, a regular subject
+                teacher is assigned as a part-time guidance advocate for thousands of learners. Warning signs like
+                self-harm, extreme withdrawal, and violent threats slip through the cracks every single day simply
+                because there are not enough professionals on campus to catch them.
+              </p>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ==============================================
+         TAB 04: STUDENT RIGHTS & LAWS
+         ============================================== -->
+    <section id="tab-laws" class="editorial-viewport" role="tabpanel" aria-labelledby="tab-btn-laws" tabindex="0"
+      hidden>
+
+      <div class="sticky-split-layout">
+
+        <aside class="sticky-side-anchor">
+          <div class="anchor-pin">
+            <h2 class="display-title-sticky">Legal Protections</h2>
+            <p class="sticky-subtext">
+              National legislation and DepEd policies establishing protective frameworks, anti-bullying mandates, and
+              mental health obligations for educational institutions.
+            </p>
+          </div>
+        </aside>
+
+        <div class="flowing-narrative-feed">
+
+          <article class="statute-row-strip">
+            <div class="statute-code-wrap">
+              <span class="code-lead">RA 10627</span>
+              <button type="button" class="btn-copy-cite" data-copy="Republic Act 10627 (Anti-Bullying Act of 2013)"
+                title="Copy law citation">Copy Cite</button>
+            </div>
+            <div class="statute-content">
+              <h3 class="statute-title">Republic Act 10627 (Anti-Bullying Act of 2013)</h3>
+              <p class="statute-body">
+                Requires all elementary and high schools to maintain an active Child Protection Committee (CPC). Schools
+                are legally obligated to investigate bullying reports, protect victims, and provide mandatory counseling
+                for both victims and aggressors.
+              </p>
+            </div>
+          </article>
+
+          <article class="statute-row-strip">
+            <div class="statute-code-wrap">
+              <span class="code-lead">RA 11036</span>
+              <button type="button" class="btn-copy-cite" data-copy="Republic Act 11036 (Philippine Mental Health Act)"
+                title="Copy law citation">Copy Cite</button>
+            </div>
+            <div class="statute-content">
+              <h3 class="statute-title">Republic Act 11036 (Philippine Mental Health Act)</h3>
+              <p class="statute-body">
+                Mandates educational institutions to integrate age-appropriate mental health programs, reduce stigma,
+                and provide accessible psychosocial support services for all learners.
+              </p>
+            </div>
+          </article>
+
+          <article class="statute-row-strip">
+            <div class="statute-code-wrap">
+              <span class="code-lead">DO 40</span>
+              <button type="button" class="btn-copy-cite"
+                data-copy="DepEd Order No. 40, s. 2012 (Child Protection Policy)" title="Copy order citation">Copy
+                Cite</button>
+            </div>
+            <div class="statute-content">
+              <h3 class="statute-title">DepEd Order No. 40, s. 2012 (Child Protection Policy)</h3>
+              <p class="statute-body">
+                Enforces zero tolerance for any form of child abuse, physical aggression, exploitation, or harassment
+                within school premises.
+              </p>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ==============================================
+         TAB 05: LAS PIÑAS & NATIONAL HOTLINES
+         ============================================== -->
+    <section id="tab-hotlines" class="editorial-viewport" role="tabpanel" aria-labelledby="tab-btn-hotlines"
+      tabindex="0" hidden>
+
+      <!-- Part 1: Action Steps for Students -->
+      <div class="action-steps-module">
+        <h2 class="display-title-sticky">Action Steps for Students</h2>
+
+        <div class="steps-horizontal-flow">
+          <div class="step-horizontal-item interactive-tilt-card">
+            <div class="step-media-wrapper">
+              <img src="images/action-step-1.jpg" alt="Stop recording and sharing fights"
+                class="editorial-media-img step-media-img" loading="lazy">
+              <div class="media-sheen-overlay"></div>
+            </div>
+            <span class="step-index">01</span>
+            <h3 class="step-headline">Stop recording and sharing fights.</h3>
+            <p class="step-prose">Cheering on violence or posting brawl videos on social media platforms fuels
+              aggression and violates digital ethics.</p>
+          </div>
+
+          <div class="step-horizontal-item interactive-tilt-card">
+            <div class="step-media-wrapper">
+              <img src="images/action-step-2.jpg" alt="Do not provoke someone having an emotional breakdown"
+                class="editorial-media-img step-media-img" loading="lazy">
+              <div class="media-sheen-overlay"></div>
+            </div>
+            <span class="step-index">02</span>
+            <h3 class="step-headline">Do not provoke someone who is having an emotional breakdown.</h3>
+            <p class="step-prose">Step back, give them space, and de-escalate the situation.</p>
+          </div>
+
+          <div class="step-horizontal-item interactive-tilt-card">
+            <div class="step-media-wrapper">
+              <img src="images/action-step-3.jpg" alt="Report threats and weapons immediately"
+                class="editorial-media-img step-media-img" loading="lazy">
+              <div class="media-sheen-overlay"></div>
+            </div>
+            <span class="step-index">03</span>
+            <h3 class="step-headline">Report threats and weapons immediately.</h3>
+            <p class="step-prose">If a classmate talks about wanting to die, threatens someone, or brings a weapon to
+              school, notify a teacher, guidance advocate, or school head right away.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Part 2: Emergency Contact Directory with Live Search -->
+      <div class="hotlines-directory-container">
+
+        <div class="directory-top-filter-bar">
+          <div class="search-input-wrap hotline-search-wrap">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="8" />
+              <line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg>
+            <input type="text" id="hotlineSearchInput" class="minimal-search-input"
+              placeholder="Search directory (e.g. police, hospital, NCMH, CSWD)..." aria-label="Search hotlines">
+            <button type="button" id="hotlineSearchClear" class="search-clear-btn" aria-label="Clear hotline search"
+              hidden>&times;</button>
+          </div>
+
+          <!-- Quick Filter Chips for Directory -->
+          <div class="quick-filter-chips" aria-label="Quick filter directory">
+            <button type="button" class="filter-chip active" data-hotline-filter="">All</button>
+            <button type="button" class="filter-chip" data-hotline-filter="CSWD">CSWD</button>
+            <button type="button" class="filter-chip" data-hotline-filter="Police">Police / WCPD</button>
+            <button type="button" class="filter-chip" data-hotline-filter="Hospital">Hospital</button>
+            <button type="button" class="filter-chip" data-hotline-filter="NCMH">NCMH 1553</button>
+            <button type="button" class="filter-chip" data-hotline-filter="DepEd">DepEd</button>
+            <button type="button" class="filter-chip" data-hotline-filter="Hopeline">Hopeline</button>
+          </div>
+
+          <span id="hotlineCountBadge" class="filter-count-badge">8 helplines</span>
+        </div>
+
+        <div class="hotlines-split-ledger">
+
+          <!-- Local Directory -->
+          <div class="ledger-zone" id="localLedgerZone">
+            <div class="ledger-zone-header">
+              <h3 class="ledger-zone-title">Local Support (Las Piñas City)</h3>
+            </div>
+
+            <div class="ledger-rows">
+              <div class="contact-ledger-row searchable-hotline-item"
+                data-hotline-keywords="cswd youth protection desk las pinas city hall compound alabang zapote road 88724663 88727489 (02) 8872-4663 (02) 8872-7489 social welfare child minors">
+                <h4 class="contact-name">Las Piñas City Social Welfare and Development (CSWD) — Youth Protection Desk
+                </h4>
+                <div class="contact-meta-fields">
+                  <span class="field-item"><span class="field-label">Location:</span> Las Piñas City Hall Compound,
+                    Alabang-Zapote Road.</span>
+                  <span class="field-item">
+                    <span class="field-label">Landline:</span>
+                    <a href="tel:0288724663" class="dial-link" data-copy="(02) 8872-4663"
+                      title="Click to copy or dial">(02) 8872-4663</a> /
+                    <a href="tel:0288727489" class="dial-link" data-copy="(02) 8872-7489"
+                      title="Click to copy or dial">(02) 8872-7489</a>
+                  </span>
+                </div>
+              </div>
+
+              <div class="contact-ledger-row searchable-hotline-item"
+                data-hotline-keywords="general hospital satellite trauma center emergency psych support diego cera pulang lupa 88730556 (02) 8873-0556 psychiatric medical doctors clinic">
+                <h4 class="contact-name">Las Piñas General Hospital and Satellite Trauma Center (Emergency / Psych
+                  Support)</h4>
+                <div class="contact-meta-fields">
+                  <span class="field-item"><span class="field-label">Location:</span> P. Diego Cera Ave, Pulang Lupa I,
+                    Las Piñas.</span>
+                  <span class="field-item">
+                    <span class="field-label">Landline:</span>
+                    <a href="tel:0288730556" class="dial-link" data-copy="(02) 8873-0556"
+                      title="Click to copy or dial">(02) 8873-0556</a>
+                  </span>
+                </div>
+              </div>
+
+              <div class="contact-ledger-row searchable-hotline-item"
+                data-hotline-keywords="police station wcpd women children protection desk alabang zapote 88087395 09985987928 (02) 8808-7395 0998-598-7928 cops emergency security">
+                <h4 class="contact-name">Las Piñas City Police Station — Women and Children Protection Desk (WCPD)</h4>
+                <div class="contact-meta-fields">
+                  <span class="field-item"><span class="field-label">Location:</span> Alabang-Zapote Road, Las
+                    Piñas.</span>
+                  <span class="field-item">
+                    <span class="field-label">Hotline:</span>
+                    <a href="tel:0288087395" class="dial-link" data-copy="(02) 8808-7395"
+                      title="Click to copy or dial">(02) 8808-7395</a> |
+                    <span class="field-label">Mobile:</span>
+                    <a href="tel:09985987928" class="dial-link" data-copy="0998-598-7928"
+                      title="Click to copy or dial">0998-598-7928</a>
+                  </span>
+                </div>
+              </div>
+
+              <div class="contact-ledger-row searchable-hotline-item"
+                data-hotline-keywords="deped schools division office child protection unit gabaldon sdo.laspinas@deped.gov.ph education division school complaints">
+                <h4 class="contact-name">DepEd Schools Division Office of Las Piñas (Child Protection Unit)</h4>
+                <div class="contact-meta-fields">
+                  <span class="field-item"><span class="field-label">Location:</span> Gabaldon Bldg., Padre Diego Cera
+                    Ave., Las Piñas.</span>
+                  <span class="field-item">
+                    <span class="field-label">Email:</span>
+                    <a href="mailto:sdo.laspinas@deped.gov.ph" class="dial-link email-dial"
+                      data-copy="sdo.laspinas@deped.gov.ph" title="Click to copy or email">sdo.laspinas@deped.gov.ph</a>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- National Directory -->
+          <div class="ledger-zone" id="nationalLedgerZone">
+            <div class="ledger-zone-header">
+              <h3 class="ledger-zone-title">National 24/7 Helplines</h3>
+            </div>
+
+            <div class="ledger-rows">
+              <div class="contact-ledger-row searchable-hotline-item"
+                data-hotline-keywords="national center mental health ncmh crisis line toll-free 1553 09178998727 09663514518 0917-899-8727 0966-351-4518 suicide helpline depression 24/7">
+                <h4 class="contact-name">National Center for Mental Health (NCMH) Crisis Line</h4>
+                <div class="contact-meta-fields">
+                  <span class="field-item">
+                    <span class="field-label">Toll-Free Hotline:</span>
+                    <a href="tel:1553" class="dial-link hotline-big-dial" data-copy="1553"
+                      title="Click to copy or dial 1553">1553</a>
+                  </span>
+                  <span class="field-item">
+                    <span class="field-label">Mobile:</span>
+                    <a href="tel:09178998727" class="dial-link" data-copy="0917-899-8727"
+                      title="Click to copy or dial">0917-899-8727</a> /
+                    <a href="tel:09663514518" class="dial-link" data-copy="0966-351-4518"
+                      title="Click to copy or dial">0966-351-4518</a>
+                  </span>
+                </div>
+              </div>
+
+              <div class="contact-ledger-row searchable-hotline-item"
+                data-hotline-keywords="deped learner rights protection telesafe desk 33733 #33733 deped lrpo@deped.gov.ph bullying abuse violence student rights helpline">
+                <h4 class="contact-name">DepEd Learner Rights and Protection Telesafe Desk</h4>
+                <div class="contact-meta-fields">
+                  <span class="field-item">
+                    <span class="field-label">Dedicated Line:</span>
+                    <a href="tel:33733" class="dial-link hotline-big-dial" data-copy="#33733"
+                      title="Click to copy or dial #33733">#33733</a> (#DEPED)
+                  </span>
+                  <span class="field-item">
+                    <span class="field-label">Email:</span>
+                    <a href="mailto:lrpo@deped.gov.ph" class="dial-link email-dial" data-copy="lrpo@deped.gov.ph"
+                      title="Click to copy or email">lrpo@deped.gov.ph</a>
+                  </span>
+                </div>
+              </div>
+
+              <div class="contact-ledger-row searchable-hotline-item"
+                data-hotline-keywords="hopeline philippines crisis support 88044635 09188734636 (02) 8804-4635 0918-873-4636 suicide depression psychological counseling anxiety">
+                <h4 class="contact-name">Hopeline Philippines Crisis Support</h4>
+                <div class="contact-meta-fields">
+                  <span class="field-item">
+                    <span class="field-label">Landline:</span>
+                    <a href="tel:0288044635" class="dial-link" data-copy="(02) 8804-4635"
+                      title="Click to copy or dial">(02) 8804-4635</a>
+                  </span>
+                  <span class="field-item">
+                    <span class="field-label">Mobile:</span>
+                    <a href="tel:09188734636" class="dial-link" data-copy="0918-873-4636"
+                      title="Click to copy or dial">0918-873-4636</a>
+                  </span>
+                </div>
+              </div>
+
+              <div class="contact-ledger-row searchable-hotline-item"
+                data-hotline-keywords="pnp anti cybercrime group online harassment threats desk 84141560 09985988116 (02) 8414-1560 0998-598-8116 cyberbullying social media blackmail">
+                <h4 class="contact-name">PNP Anti-Cybercrime Group (Online Harassment &amp; Threats Desk)</h4>
+                <div class="contact-meta-fields">
+                  <span class="field-item">
+                    <span class="field-label">Landline:</span>
+                    <a href="tel:0284141560" class="dial-link" data-copy="(02) 8414-1560"
+                      title="Click to copy or dial">(02) 8414-1560</a>
+                  </span>
+                  <span class="field-item">
+                    <span class="field-label">Mobile:</span>
+                    <a href="tel:09985988116" class="dial-link" data-copy="0998-598-8116"
+                      title="Click to copy or dial">0998-598-8116</a>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Mobile Floating Emergency Dial Trigger -->
+  <aside class="mobile-emergency-dock" aria-label="Immediate crisis helpline access">
+    <a href="tel:1553" class="mobile-dial-pill" data-copy="1553" title="Tap to call National Crisis Hotline 1553">
+      <span class="dial-dot"></span>
+      <span class="dial-txt">24/7 Crisis Hotline: <strong>1553</strong></span>
+    </a>
+  </aside>
+
+  <!-- Floating Back to Top Button with SVG Circular Progress Ring -->
+  <button type="button" id="backToTopBtn" class="back-to-top-btn" aria-label="Back to top" title="Back to top">
+    <svg class="progress-ring-svg" width="44" height="44" viewBox="0 0 44 44" aria-hidden="true">
+      <circle class="progress-ring-circle-bg" stroke="rgba(255,255,255,0.1)" stroke-width="2" fill="transparent" r="18"
+        cx="22" cy="22" />
+      <circle id="progressRingCircle" class="progress-ring-circle" stroke="var(--accent-teal)" stroke-width="2.5"
+        stroke-linecap="round" fill="transparent" r="18" cx="22" cy="22" />
+    </svg>
+    <svg class="arrow-up-svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+      stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <polyline points="18 15 12 9 6 15" />
+    </svg>
+  </button>
+
+  <!-- Keyboard Shortcuts Cheat Sheet Modal -->
+  <dialog id="shortcutsDialog" class="shortcuts-dialog" aria-labelledby="shortcutsModalTitle">
+    <div class="dialog-card">
+      <div class="dialog-header">
+        <h3 id="shortcutsModalTitle" class="dialog-title">Keyboard Navigation</h3>
+        <button type="button" id="shortcutsCloseBtn" class="dialog-close-btn"
+          aria-label="Close shortcuts">&times;</button>
+      </div>
+      <div class="dialog-body">
+        <div class="shortcut-row">
+          <span class="shortcut-desc">Switch Tabs (01 - 05)</span>
+          <div class="shortcut-keys"><kbd>1</kbd> to <kbd>5</kbd></div>
+        </div>
+        <div class="shortcut-row">
+          <span class="shortcut-desc">Next / Previous Tab</span>
+          <div class="shortcut-keys"><kbd>&rarr;</kbd> / <kbd>&larr;</kbd> or <kbd>]</kbd> / <kbd>[</kbd></div>
+        </div>
+        <div class="shortcut-row">
+          <span class="shortcut-desc">Search Cases or Directory</span>
+          <div class="shortcut-keys"><kbd>/</kbd> or <kbd>Ctrl</kbd>+<kbd>K</kbd></div>
+        </div>
+        <div class="shortcut-row">
+          <span class="shortcut-desc">Clear Search / Close Modal</span>
+          <div class="shortcut-keys"><kbd>Esc</kbd></div>
+        </div>
+        <div class="shortcut-row">
+          <span class="shortcut-desc">Toggle Shortcuts Cheat Sheet</span>
+          <div class="shortcut-keys"><kbd>?</kbd></div>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Interactive Toast Notification -->
+  <div class="copy-toast-banner" id="copyToast" aria-live="polite">
+    <span class="toast-marker"></span>
+    <span id="toastMsg">Copied to clipboard</span>
+  </div>
+
+  <!-- Colophon Footer -->
+  <footer class="editorial-colophon">
+    <div class="container colophon-flex">
+      <p class="colophon-attribution">
+        © 2026 Bantay-Isip Campaign | Las Piñas City National Science High School | Senior High School Empowerment
+        Technologies ICT Project | Coded in VS Code,
+        assisted with Antigravity IDE.
+      </p>
+    </div>
+  </footer>
+
+  <!-- GSAP 3 Animation Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>
