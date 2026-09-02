@@ -241,32 +241,37 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // =========================================================================
-  // 3. Text Decryption / Scramble Matrix Effect
+  // 3. Text Decryption / Scramble Matrix Effect (Fast, Crisp Snap)
   // =========================================================================
   const glyphs = 'ABCDEF0123456789!@#$%&*<>[]{}';
 
   function scrambleText(element, finalText) {
     if (!element) return;
+    const text = (finalText || element.getAttribute('data-scramble-text') || element.innerText || '').trim();
+    if (!text) return;
+
     let iteration = 0;
-    const maxIterations = finalText.length;
+    // Normalize iterations so shorter titles like "Overview" are clearly visible (~200ms)
+    const totalSteps = Math.max(12, Math.min(22, text.length * 2));
+    const increment = text.length / totalSteps;
     clearInterval(element._scrambleTimer);
 
     element._scrambleTimer = setInterval(() => {
-      element.innerText = finalText
+      element.innerText = text
         .split('')
         .map((char, index) => {
           if (char === ' ') return ' ';
-          if (index < iteration) return finalText[index];
+          if (index < Math.floor(iteration)) return text[index];
           return glyphs[Math.floor(Math.random() * glyphs.length)];
         })
         .join('');
 
-      if (iteration >= maxIterations) {
+      if (iteration >= text.length) {
         clearInterval(element._scrambleTimer);
-        element.innerText = finalText;
+        element.innerText = text;
       }
-      iteration += 1 / 2;
-    }, 25);
+      iteration += increment;
+    }, 16);
   }
 
   // =========================================================================
@@ -351,25 +356,25 @@ document.addEventListener('DOMContentLoaded', () => {
         panel.removeAttribute('hidden');
         panel.classList.add('active');
 
-        // Scramble title animation
-        const scrambleTarget = panel.querySelector('.scramble-target');
-        if (scrambleTarget) {
-          const original = scrambleTarget.getAttribute('data-scramble-text') || scrambleTarget.innerText;
-          scrambleText(scrambleTarget, original);
-        }
+        // Scramble title animation for all target headings in panel
+        const scrambleTargets = panel.querySelectorAll('.scramble-target');
+        scrambleTargets.forEach(target => {
+          const original = target.getAttribute('data-scramble-text') || target.innerText;
+          scrambleText(target, original);
+        });
 
         // GSAP Entrance
         if (window.gsap) {
           gsap.fromTo(panel, 
-            { opacity: 0, y: 12 },
-            { opacity: 1, y: 0, duration: 0.35, ease: 'power2.out', clearProps: 'all' }
+            { opacity: 0, y: 10 },
+            { opacity: 1, y: 0, duration: 0.32, ease: 'power2.out', clearProps: 'all' }
           );
 
-          const revealItems = panel.querySelectorAll('.factor-narrative-strip, .statute-row-strip, .step-horizontal-item, .contact-ledger-row, .asymmetric-split-hero, .team-profile-card, .phase-card, .curation-table-wrapper, .evidence-card');
+          const revealItems = panel.querySelectorAll('.factor-narrative-strip, .statute-row-strip, .step-horizontal-item, .contact-ledger-row, .manifesto-editorial-wrap, .member-card, .curation-table-wrapper, .evidence-card');
           if (revealItems.length > 0) {
             gsap.fromTo(revealItems,
               { opacity: 0, y: 10 },
-              { opacity: 1, y: 0, duration: 0.3, stagger: 0.04, ease: 'power2.out', clearProps: 'all', delay: 0.05 }
+              { opacity: 1, y: 0, duration: 0.28, stagger: 0.04, ease: 'power2.out', clearProps: 'all', delay: 0.04 }
             );
           }
         }
@@ -1035,7 +1040,8 @@ document.addEventListener('DOMContentLoaded', () => {
     switchTab(hashToTabMap[currentHash], false);
   } else {
     const initialTabBtn = document.querySelector('[role="tab"].active') || tabs[0];
-    updateGlider(initialTabBtn, false);
+    const initialPanelId = initialTabBtn ? initialTabBtn.getAttribute('aria-controls') : 'tab-home';
+    switchTab(initialPanelId || 'tab-home', false);
   }
 
   window.addEventListener('resize', () => {
