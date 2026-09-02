@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
-  <rect width="800" height="450" fill="#0c111e"/>
-  <rect x="20" y="20" width="760" height="410" rx="8" fill="#111728" stroke="rgba(255,255,255,0.1)" stroke-width="1.5" stroke-dasharray="6,6"/>
-  <circle cx="400" cy="180" r="40" fill="rgba(192,132,252,0.1)" stroke="#c084fc" stroke-width="2"/>
-  <path d="M382 175h36M382 185h24" stroke="#c084fc" stroke-width="2" stroke-linecap="round"/>
-  <text x="400" y="255" fill="#f1f5f9" font-family="'Space Grotesk', monospace" font-size="18" font-weight="700" text-anchor="middle">TEAM CHAT &amp; COORDINATION LOGS SCREENSHOT</text>
-  <text x="400" y="285" fill="#94a3b8" font-family="'Plus Jakarta Sans', sans-serif" font-size="14" text-anchor="middle">Upload your Discord / Messenger discussion screenshot here (images/evidence-chat.png)</text>
-  <text x="400" y="315" fill="#64748b" font-family="'Space Grotesk', monospace" font-size="12" text-anchor="middle">Recommended size: 1200 x 675 px</text>
-</svg>
