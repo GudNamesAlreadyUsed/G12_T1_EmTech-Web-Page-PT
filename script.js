@@ -52,6 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const lightboxImg = document.getElementById('lightboxImg');
   const lightboxTitle = document.getElementById('lightboxTitle');
   const lightboxCaption = document.getElementById('lightboxCaption');
+  const lightboxFullscreenBtn = document.getElementById('lightboxFullscreenBtn');
   const evidenceCards = document.querySelectorAll('.evidence-card');
 
   // Tab 02: Case Search Elements & Quick Chips
@@ -927,9 +928,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Tab 06 Evidence Lightbox Handlers
+  // Tab 06 Evidence Lightbox Handlers (In-Window Enlarge Mode)
   function openEvidenceLightbox(imgSrc, title, caption) {
     if (!evidenceLightbox) return;
+    evidenceLightbox.classList.remove('is-enlarged');
+    if (lightboxFullscreenBtn) lightboxFullscreenBtn.textContent = 'Enlarge ⛶';
     if (lightboxImg) lightboxImg.src = imgSrc || '';
     if (lightboxTitle) lightboxTitle.textContent = title || 'Evidence Artifact Preview';
     if (lightboxCaption) lightboxCaption.textContent = caption || '';
@@ -941,14 +944,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function closeEvidenceLightbox() {
     if (evidenceLightbox && typeof evidenceLightbox.close === 'function') {
+      evidenceLightbox.classList.remove('is-enlarged');
+      if (lightboxFullscreenBtn) lightboxFullscreenBtn.textContent = 'Enlarge ⛶';
       evidenceLightbox.close();
     }
   }
 
+  function toggleLightboxFullscreen() {
+    if (!evidenceLightbox) return;
+    const isEnlarged = evidenceLightbox.classList.toggle('is-enlarged');
+    if (lightboxFullscreenBtn) {
+      lightboxFullscreenBtn.textContent = isEnlarged ? 'Shrink ⛶' : 'Enlarge ⛶';
+      lightboxFullscreenBtn.setAttribute('title', isEnlarged ? 'Restore default preview size' : 'Enlarge preview to fit screen');
+    }
+    playUiSound('click');
+  }
+
+  if (lightboxFullscreenBtn) lightboxFullscreenBtn.addEventListener('click', toggleLightboxFullscreen);
   if (lightboxCloseBtn) lightboxCloseBtn.addEventListener('click', closeEvidenceLightbox);
+
   if (evidenceLightbox) {
     evidenceLightbox.addEventListener('click', (e) => {
       if (e.target === evidenceLightbox) closeEvidenceLightbox();
+    });
+    evidenceLightbox.addEventListener('cancel', () => {
+      evidenceLightbox.classList.remove('is-enlarged');
+      if (lightboxFullscreenBtn) lightboxFullscreenBtn.textContent = 'Enlarge ⛶';
     });
   }
 
@@ -965,6 +986,24 @@ document.addEventListener('DOMContentLoaded', () => {
     if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) {
       if (e.key === 'Escape') document.activeElement.blur();
       return;
+    }
+
+    // Lightbox modal keyboard controls
+    if (evidenceLightbox && evidenceLightbox.open) {
+      if (e.key === 'f' || e.key === 'F') {
+        e.preventDefault();
+        toggleLightboxFullscreen();
+        return;
+      }
+      if (e.key === 'Escape') {
+        if (evidenceLightbox.classList.contains('is-enlarged')) {
+          e.preventDefault();
+          toggleLightboxFullscreen();
+          return;
+        }
+        closeEvidenceLightbox();
+        return;
+      }
     }
 
     // Direct tab jumps 1-6
