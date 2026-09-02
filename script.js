@@ -1,16 +1,7 @@
 /**
- * Bantay-Isip - Complete High-Fluidity Interactive Motion & Audio Engine
- * 
- * Features:
- * - GSAP Viewport Reveals & Text Decryption / Scramble Animation
- * - HTML5 Canvas Ambient Particle Dust Motes Network
- * - Magnetic Physics Cursor Attraction on Buttons & Chips
- * - Synthesized Harmonic Web Audio Engine with Animated Audio Equalizer
- * - 4-7-8 Interactive Acute Grounding / Breathing Tool (Tab 3 & G key)
- * - Evidence Artifact Lightbox Inspection Modal (Tab 6)
- * - Interactive 3D Card Tilt with Light Reflection Glare & Border Beam
- * - Circular SVG Scroll Progress Ring & Deep Linking
- * - Safe TreeWalker Search Engine with Dynamic Filter Synchronization
+ * Bantay-Isip: Stopping School Violence at the Root
+ * Grade 12 Empowerment Technologies Project
+ * Las Piñas City National Science High School
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -76,9 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let audioEnabled = true;
   let breathingInterval = null;
 
-  // =========================================================================
-  // 1. Synthesized Web Audio Harmonic Engine (Zero-Dependency & Crystal Clear)
-  // =========================================================================
+  // Sound effects (clicks and tab switching)
   let audioCtx = null;
 
   function initAudio() {
@@ -193,9 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // =========================================================================
-  // 2. Ambient HTML5 Canvas Particle Network
-  // =========================================================================
+  // Background particles
   const canvas = document.getElementById('ambientParticlesCanvas');
   if (canvas && canvas.getContext) {
     const ctx = canvas.getContext('2d');
@@ -241,9 +228,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { passive: true });
   }
 
-  // =========================================================================
-  // 3. Text Decryption / Scramble Matrix Effect (Fast, Crisp Snap)
-  // =========================================================================
+  // Text scramble effect
   const glyphs = 'ABCDEF0123456789!@#$%&*<>[]{}';
 
   function scrambleText(element, finalText) {
@@ -275,9 +260,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 16);
   }
 
-  // =========================================================================
-  // 4. Tab Navigation & Glider Mechanics (Tabs 01 - 06)
-  // =========================================================================
+  // Tab navigation & slider indicator
   const ringCircumference = 113.097;
 
   const tabIdList = [
@@ -448,9 +431,7 @@ document.addEventListener('DOMContentLoaded', () => {
     navTrack.scrollLeft = scrollLeft - walk;
   });
 
-  // =========================================================================
-  // 5. 3D Card Tilt & Light Glare Coordinate Tracking
-  // =========================================================================
+  // 3D card tilt effect on mouse move
   tiltCards.forEach(card => {
     card.addEventListener('mousemove', (e) => {
       const rect = card.getBoundingClientRect();
@@ -489,9 +470,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // =========================================================================
-  // 6. GSAP Smooth Accordion Toggle
-  // =========================================================================
+  // Accordion toggle
   function toggleAccordion(item, shouldOpen = null) {
     const isCurrentlyExpanded = item.getAttribute('data-expanded') === 'true';
     const willOpen = shouldOpen !== null ? shouldOpen : !isCurrentlyExpanded;
@@ -547,9 +526,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // =========================================================================
-  // 7. Safe DOM TreeWalker Highlighting
-  // =========================================================================
+  // Text highlighting and search matching
   function removeSearchHighlights(container) {
     if (!container) return;
     const highlights = container.querySelectorAll('.search-highlight');
@@ -728,9 +705,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // =========================================================================
-  // 8. Clipboard Copy & Toast Engine
-  // =========================================================================
+  // Copy to clipboard toast
   function showToast(message) {
     if (!toast || !toastMsg) return;
     toastMsg.textContent = message;
@@ -749,19 +724,67 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const copyText = copyTarget.getAttribute('data-copy');
     if (copyText) {
-      navigator.clipboard.writeText(copyText).then(() => {
+      const handleSuccess = () => {
         showToast(`Copied: "${copyText}"`);
         copyTarget.classList.add('copied');
-        setTimeout(() => copyTarget.classList.remove('copied'), 2000);
-      }).catch(() => {
-        showToast(`Copied: "${copyText}"`);
-      });
+
+        // Provide visual "Copied!" text on the button itself
+        if (copyTarget.classList.contains('btn-copy-cite')) {
+          if (!copyTarget._origHtml) {
+            copyTarget._origHtml = copyTarget.innerHTML;
+          }
+          if (copyTarget.classList.contains('btn-copy-case-summary')) {
+            copyTarget.innerHTML = `<span class="btn-copy-icon" aria-hidden="true">✓</span> <span>Copied!</span>`;
+          } else {
+            copyTarget.textContent = 'Copied!';
+          }
+
+          if (copyTarget._resetTimer) clearTimeout(copyTarget._resetTimer);
+          copyTarget._resetTimer = setTimeout(() => {
+            copyTarget.classList.remove('copied');
+            if (copyTarget._origHtml) {
+              copyTarget.innerHTML = copyTarget._origHtml;
+              copyTarget._origHtml = null;
+            }
+          }, 2000);
+        } else {
+          setTimeout(() => copyTarget.classList.remove('copied'), 2000);
+        }
+      };
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(copyText)
+          .then(handleSuccess)
+          .catch(() => {
+            try {
+              const ta = document.createElement('textarea');
+              ta.value = copyText;
+              ta.style.position = 'fixed';
+              ta.style.opacity = '0';
+              document.body.appendChild(ta);
+              ta.select();
+              document.execCommand('copy');
+              document.body.removeChild(ta);
+            } catch (err) {}
+            handleSuccess();
+          });
+      } else {
+        try {
+          const ta = document.createElement('textarea');
+          ta.value = copyText;
+          ta.style.position = 'fixed';
+          ta.style.opacity = '0';
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          document.body.removeChild(ta);
+        } catch (err) {}
+        handleSuccess();
+      }
     }
   });
 
-  // =========================================================================
-  // 9. 4-7-8 Acute Stress Grounding / Breathing Tool Engine (Tab 3 & G key)
-  // =========================================================================
+  // 4-7-8 Breathing exercise
   function startBreathingExercise() {
     if (!breathingRing || !breathingActionLabel || !breathingTimerCount) return;
     if (startBreathingBtn) startBreathingBtn.style.display = 'none';
@@ -837,9 +860,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // =========================================================================
-  // 10. Tab 06 Evidence Gallery Lightbox Modal
-  // =========================================================================
+  // Evidence preview modal
   function openEvidenceLightbox(imgSrc, title, caption) {
     if (!evidenceLightbox || typeof evidenceLightbox.showModal !== 'function') return;
     if (lightboxImg) lightboxImg.src = imgSrc;
@@ -871,9 +892,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // =========================================================================
-  // 11. Scroll Progress & Floating Controls
-  // =========================================================================
+  // Scroll progress & back to top button
   window.addEventListener('scroll', () => {
     const scrollTop = window.scrollY;
     const docHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -909,9 +928,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { passive: true });
   }
 
-  // =========================================================================
-  // 12. Shortcuts Modal, Evidence Lightbox & Global Hotkeys (Tabs 1 - 6)
-  // =========================================================================
+  // Keyboard shortcuts
   function openShortcutsDialog() {
     if (shortcutsDialog && typeof shortcutsDialog.showModal === 'function') shortcutsDialog.showModal();
   }
@@ -1071,9 +1088,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // =========================================================================
-  // 13. Initial Deep Link / Hash Routing
-  // =========================================================================
+  // Initial hash routing
   const currentHash = window.location.hash.replace('#', '').toLowerCase();
   if (currentHash && hashToTabMap[currentHash]) {
     switchTab(hashToTabMap[currentHash], false);
