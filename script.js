@@ -718,68 +718,76 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 2600);
   }
 
+  function fallbackCopyText(text) {
+    try {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+    } catch (err) {}
+  }
+
+  // Copy Cite & Case Summary buttons feedback
+  const copyCiteButtons = document.querySelectorAll('.btn-copy-cite');
+  copyCiteButtons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const copyText = btn.getAttribute('data-copy');
+      if (!copyText) return;
+
+      showToast(`Copied: "${copyText}"`);
+      btn.classList.add('copied');
+
+      if (!btn._origHtml) {
+        btn._origHtml = btn.innerHTML;
+      }
+
+      if (btn.classList.contains('btn-copy-case-summary')) {
+        btn.innerHTML = `<span class="btn-copy-icon" aria-hidden="true">✓</span> <span>Copied!</span>`;
+      } else {
+        btn.textContent = 'Copied!';
+      }
+
+      if (btn._resetTimer) clearTimeout(btn._resetTimer);
+      btn._resetTimer = setTimeout(() => {
+        btn.classList.remove('copied');
+        if (btn._origHtml) {
+          btn.innerHTML = btn._origHtml;
+          btn._origHtml = null;
+        }
+      }, 2000);
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(copyText).catch(() => {
+          fallbackCopyText(copyText);
+        });
+      } else {
+        fallbackCopyText(copyText);
+      }
+    });
+  });
+
+  // General [data-copy] handler (links, pills, etc.)
   document.addEventListener('click', (e) => {
     const copyTarget = e.target.closest('[data-copy]');
-    if (!copyTarget) return;
+    if (!copyTarget || copyTarget.classList.contains('btn-copy-cite')) return;
 
     const copyText = copyTarget.getAttribute('data-copy');
     if (copyText) {
-      const handleSuccess = () => {
-        showToast(`Copied: "${copyText}"`);
-        copyTarget.classList.add('copied');
-
-        // Provide visual "Copied!" text on the button itself
-        if (copyTarget.classList.contains('btn-copy-cite')) {
-          if (!copyTarget._origHtml) {
-            copyTarget._origHtml = copyTarget.innerHTML;
-          }
-          if (copyTarget.classList.contains('btn-copy-case-summary')) {
-            copyTarget.innerHTML = `<span class="btn-copy-icon" aria-hidden="true">✓</span> <span>Copied!</span>`;
-          } else {
-            copyTarget.textContent = 'Copied!';
-          }
-
-          if (copyTarget._resetTimer) clearTimeout(copyTarget._resetTimer);
-          copyTarget._resetTimer = setTimeout(() => {
-            copyTarget.classList.remove('copied');
-            if (copyTarget._origHtml) {
-              copyTarget.innerHTML = copyTarget._origHtml;
-              copyTarget._origHtml = null;
-            }
-          }, 2000);
-        } else {
-          setTimeout(() => copyTarget.classList.remove('copied'), 2000);
-        }
-      };
+      showToast(`Copied: "${copyText}"`);
+      copyTarget.classList.add('copied');
+      setTimeout(() => copyTarget.classList.remove('copied'), 2000);
 
       if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(copyText)
-          .then(handleSuccess)
-          .catch(() => {
-            try {
-              const ta = document.createElement('textarea');
-              ta.value = copyText;
-              ta.style.position = 'fixed';
-              ta.style.opacity = '0';
-              document.body.appendChild(ta);
-              ta.select();
-              document.execCommand('copy');
-              document.body.removeChild(ta);
-            } catch (err) {}
-            handleSuccess();
-          });
+        navigator.clipboard.writeText(copyText).catch(() => {
+          fallbackCopyText(copyText);
+        });
       } else {
-        try {
-          const ta = document.createElement('textarea');
-          ta.value = copyText;
-          ta.style.position = 'fixed';
-          ta.style.opacity = '0';
-          document.body.appendChild(ta);
-          ta.select();
-          document.execCommand('copy');
-          document.body.removeChild(ta);
-        } catch (err) {}
-        handleSuccess();
+        fallbackCopyText(copyText);
       }
     }
   });
